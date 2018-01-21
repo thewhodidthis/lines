@@ -1,0 +1,48 @@
+{
+  "name": "multipolar",
+  "version": "0.0.0",
+  "description": "Points for drawing common geometric forms",
+  "main": "index",
+  "module": "index.mjs",
+  "homepage": "https://github.com/thewhodidthis/multipolar#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thewhodidthis/multipolar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thewhodidthis/multipolar/issues"
+  },
+  "scripts": {
+    "pretest": "eslint test.js",
+    "test": "node test",
+    "prestart": "eslint index.mjs",
+    "start": "rollup -e @thewhodidthis/arithmetics,poltocar -f cjs --no-interop index.mjs | buble > index.js",
+    "preexample": "eslint example/index.es",
+    "example": "cd example; rollup -c node:x -f iife index.es | buble > index.js"
+  },
+  "eslintConfig": {
+    "extends": "@thewhodidthis"
+  },
+  "engines": {
+    "node": ">=4.2.4",
+    "npm": ">=3.5.3"
+  },
+  "dependencies": {
+    "@thewhodidthis/arithmetics": "github:thewhodidthis/arithmetics",
+    "poltocar": "github:thewhodidthis/poltocar"
+  },
+  "devDependencies": {
+    "@thewhodidthis/eslint-config": "latest",
+    "buble": "latest",
+    "eslint": "latest",
+    "rollup": "latest",
+    "rollup-config-x": "latest",
+    "tapeless": "latest"
+  },
+  "keywords": [
+    "math",
+    "geometry"
+  ],
+  "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
+  "license": "Unlicense"
+}
