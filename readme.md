@@ -22,11 +22,11 @@ target.rotate(Math.PI * 0.5)
 target.beginPath()
 
 points.forEach((p, i) => {
-  const s = (i + 3) % points.length
-  const n = points[s]
+    const s = (i + 3) % points.length
+    const n = points[s]
 
-  target.moveTo(p.x, p.y)
-  target.lineTo(n.x, n.y)
+    target.moveTo(p.x, p.y)
+    target.lineTo(n.x, n.y)
 })
 
 target.stroke()
