@@ -79,20 +79,17 @@ var target = canvas.getContext('2d');
 target.strokeStyle = '#888';
 target.lineWidth = 1.5;
 
-var step = { x: canvas.width * 0.25, y: canvas.height / 3 };
+var step = { x: canvas.width / 4, y: canvas.height / 3 };
 var cell = { x: step.x * 0.5, y: step.y * 0.5 };
 var size = cell.y * 0.75;
 
-var grid = function (v, i) { return ({
-  x: i % 4,
-  y: Math.floor(i / 4)
-}); };
+var grid = function (v, i) { return ({ x: i % 4, y: Math.floor(i / 4) }); };
 
 Array.from({ length: 4 * 3 }).map(grid).forEach(function (v) {
   var x = (v.x * step.x) + cell.x;
   var y = (v.y * step.y) + cell.y;
 
-  var n = (2 * (v.y - 2)) + 5;
+  var n = 5 + (2 * (v.y - 2));
   var g = v.x + 1;
   var d = g === n ? 5 : g;
 
