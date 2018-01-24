@@ -54,75 +54,63 @@ var poltocar = function (t, r) {
 
 
 // https://en.wikipedia.org/wiki/Rose_(mathematics)
+var rose = function (radius, n, d, offset) {
+  if ( radius === void 0 ) radius = 0;
+  if ( n === void 0 ) n = 2;
+  if ( d === void 0 ) d = 3;
+  if ( offset === void 0 ) offset = 0;
 
+  var l = Math.max(radius, 180) * d * 2;
+  var k = n / d;
 
-// https://en.wikipedia.org/wiki/Superformula
-var foxy = function (m1, n1, n2, n3, a, b, m2) {
-  if ( m1 === void 0 ) m1 = 0;
-  if ( a === void 0 ) a = 1;
-  if ( b === void 0 ) b = a;
-  if ( m2 === void 0 ) m2 = m1;
-
-  var cos = Math.cos;
-  var pow = Math.pow;
-  var abs = Math.abs;
-
-  var input = [a, b, m1, m2, n2, n3];
-  var shift = TAU * 0.25;
-
-  var score = function (phi, t1, id) {
-    if ( t1 === void 0 ) t1 = 0;
-    if ( id === void 0 ) id = 0;
-
-    var ref = input.filter(function (v, i) { return ((i + id) % 2 ? 0 : v); });
-    var k = ref[0];
-    var m = ref[1];
-    var n = ref[2];
-
-    var q = m * phi * 0.25;
-
-    // Turn cos into sin
-    q += id ? shift : 0;
-
-    var t2 = cos(q) / k;
-
-    t2 = abs(t2);
-    t2 = pow(t2, n);
-
-    if (id === 1) {
-      return t1 + t2
-    }
-
-    return score(phi, t2, id + 1)
-  };
-
-  return Array.from({ length: 360 }).map(function (v, i) {
+  return Array.from({ length: l }).map(function (v, i) {
     var angle = rad(i);
-    var t = score(angle);
-    var reach = pow(t, 1 / n1);
+    var reach = radius * Math.cos(k * angle);
 
-    return abs(reach) ? poltocar(angle, 1 / reach) : { x: 0, y: 0 }
+    return poltocar(angle, reach + offset)
   })
 };
 
+// https://en.wikipedia.org/wiki/Superformula
+
 var canvas = document.querySelector('canvas');
 var target = canvas.getContext('2d');
-var center = { x: canvas.width * 0.5, y: canvas.height * 0.5 };
 
-var radius = 100;
-var points = foxy(8, 0.5, 0.5, 8);
+target.strokeStyle = '#888';
+target.lineWidth = 1.5;
 
-target.strokeStyle = 'white';
+var step = { x: canvas.width * 0.25, y: canvas.height / 3 };
+var cell = { x: step.x * 0.5, y: step.y * 0.5 };
+var size = cell.y * 0.75;
 
-target.translate(center.x + 0.5, center.y + 0.5);
-target.beginPath();
+var grid = function (v, i) { return ({
+  x: i % 4,
+  y: Math.floor(i / 4)
+}); };
 
-points.forEach(function (p) {
-  target.lineTo(p.x * radius, p.y * radius);
+Array.from({ length: 4 * 3 }).map(grid).forEach(function (v) {
+  var x = (v.x * step.x) + cell.x;
+  var y = (v.y * step.y) + cell.y;
+
+  var n = (2 * (v.y - 2)) + 5;
+  var g = v.x + 1;
+  var d = g === n ? 5 : g;
+
+  var points = rose(size, n, d);
+  var border = points.length * (n % 2 === d % 2 ? 0.5 : 1);
+
+  target.save();
+  target.translate(x, y);
+  target.beginPath();
+
+  points.slice(0, border).forEach(function (p) {
+    target.lineTo(p.x, p.y);
+  });
+
+  target.closePath();
+  target.stroke();
+  target.restore();
 });
-
-target.closePath();
-target.stroke();
 
 }());
 

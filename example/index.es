@@ -1,20 +1,40 @@
-import { foxy } from '../index.mjs'
+import { rose } from '../index.mjs'
 
 const canvas = document.querySelector('canvas')
 const target = canvas.getContext('2d')
-const center = { x: canvas.width * 0.5, y: canvas.height * 0.5 }
 
-const radius = 100
-const points = foxy(8, 0.5, 0.5, 8)
+target.strokeStyle = '#888'
+target.lineWidth = 1.5
 
-target.strokeStyle = 'white'
+const step = { x: canvas.width * 0.25, y: canvas.height / 3 }
+const cell = { x: step.x * 0.5, y: step.y * 0.5 }
+const size = cell.y * 0.75
 
-target.translate(center.x + 0.5, center.y + 0.5)
-target.beginPath()
-
-points.forEach((p) => {
-  target.lineTo(p.x * radius, p.y * radius)
+const grid = (v, i) => ({
+  x: i % 4,
+  y: Math.floor(i / 4)
 })
 
-target.closePath()
-target.stroke()
+Array.from({ length: 4 * 3 }).map(grid).forEach((v) => {
+  const x = (v.x * step.x) + cell.x
+  const y = (v.y * step.y) + cell.y
+
+  const n = (2 * (v.y - 2)) + 5
+  const g = v.x + 1
+  const d = g === n ? 5 : g
+
+  const points = rose(size, n, d)
+  const border = points.length * (n % 2 === d % 2 ? 0.5 : 1)
+
+  target.save()
+  target.translate(x, y)
+  target.beginPath()
+
+  points.slice(0, border).forEach((p) => {
+    target.lineTo(p.x, p.y)
+  })
+
+  target.closePath()
+  target.stroke()
+  target.restore()
+})
