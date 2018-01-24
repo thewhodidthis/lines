@@ -23,10 +23,10 @@ var coil = function (radius, n, a, b, c) {
   if ( b === void 0 ) b = 1;
   if ( c === void 0 ) c = 1;
 
-  var length = Math.max(radius, 180) * n * 2;
+  var l = Math.max(radius, 180) * n * 2;
   var k = 1 / c;
 
-  return Array.from({ length: length }).map(function (v, i) {
+  return Array.from({ length: l }).map(function (v, i) {
     var angle = arithmetics.rad(i);
     var reach = a + (b * Math.pow(angle, k));
 
@@ -41,10 +41,10 @@ var rose = function (radius, n, d, offset) {
   if ( d === void 0 ) d = 3;
   if ( offset === void 0 ) offset = 0;
 
-  var length = Math.max(radius, 180) * d * 2;
+  var l = Math.max(radius, 180) * d * 2;
   var k = n / d;
 
-  return Array.from({ length: length }).map(function (v, i) {
+  return Array.from({ length: l }).map(function (v, i) {
     var angle = arithmetics.rad(i);
     var reach = radius * Math.cos(k * angle);
 

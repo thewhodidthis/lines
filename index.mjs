@@ -10,10 +10,10 @@ export const poly = (radius = 0, n = 3) => {
 
 // https://en.wikipedia.org/wiki/Archimedean_spiral
 export const coil = (radius = 0, n = 0, a = 0, b = 1, c = 1) => {
-  const length = Math.max(radius, 180) * n * 2
+  const l = Math.max(radius, 180) * n * 2
   const k = 1 / c
 
-  return Array.from({ length }).map((v, i) => {
+  return Array.from({ length: l }).map((v, i) => {
     const angle = rad(i)
     const reach = a + (b * Math.pow(angle, k))
 
@@ -23,10 +23,10 @@ export const coil = (radius = 0, n = 0, a = 0, b = 1, c = 1) => {
 
 // https://en.wikipedia.org/wiki/Rose_(mathematics)
 export const rose = (radius = 0, n = 2, d = 3, offset = 0) => {
-  const length = Math.max(radius, 180) * d * 2
+  const l = Math.max(radius, 180) * d * 2
   const k = n / d
 
-  return Array.from({ length }).map((v, i) => {
+  return Array.from({ length: l }).map((v, i) => {
     const angle = rad(i)
     const reach = radius * Math.cos(k * angle)
 
