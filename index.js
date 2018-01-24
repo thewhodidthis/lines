@@ -53,7 +53,8 @@ var rose = function (radius, n, d, offset) {
 };
 
 // https://en.wikipedia.org/wiki/Superformula
-var foxy = function (m1, n1, n2, n3, a, b, m2) {
+var foxy = function (radius, m1, n1, n2, n3, a, b, m2) {
+  if ( radius === void 0 ) radius = 0;
   if ( m1 === void 0 ) m1 = 0;
   if ( a === void 0 ) a = 1;
   if ( b === void 0 ) b = a;
@@ -97,7 +98,7 @@ var foxy = function (m1, n1, n2, n3, a, b, m2) {
     var t = score(angle);
     var reach = pow(t, 1 / n1);
 
-    return abs(reach) ? pol2car(angle, 1 / reach) : { x: 0, y: 0 }
+    return abs(reach) ? pol2car(angle, radius / reach) : { x: 0, y: 0 }
   })
 };
 

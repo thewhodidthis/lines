@@ -35,7 +35,7 @@ export const rose = (radius = 0, n = 2, d = 3, offset = 0) => {
 }
 
 // https://en.wikipedia.org/wiki/Superformula
-export const foxy = (m1 = 0, n1, n2, n3, a = 1, b = a, m2 = m1) => {
+export const foxy = (radius = 0, m1 = 0, n1, n2, n3, a = 1, b = a, m2 = m1) => {
   const { cos, pow, abs } = Math
 
   const input = [a, b, m1, m2, n2, n3]
@@ -66,6 +66,6 @@ export const foxy = (m1 = 0, n1, n2, n3, a = 1, b = a, m2 = m1) => {
     const t = score(angle)
     const reach = pow(t, 1 / n1)
 
-    return abs(reach) ? pol2car(angle, 1 / reach) : { x: 0, y: 0 }
+    return abs(reach) ? pol2car(angle, radius / reach) : { x: 0, y: 0 }
   })
 }
