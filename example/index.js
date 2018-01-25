@@ -54,16 +54,19 @@ var poltocar = function (t, r) {
 
 
 // https://en.wikipedia.org/wiki/Rose_(mathematics)
-var rose = function (radius, n, d, offset) {
+var rose = function (radius, a, b, offset) {
   if ( radius === void 0 ) radius = 0;
-  if ( n === void 0 ) n = 2;
-  if ( d === void 0 ) d = 3;
+  if ( a === void 0 ) a = 2;
+  if ( b === void 0 ) b = 3;
   if ( offset === void 0 ) offset = 0;
 
-  var l = Math.max(radius, 180) * d * 2;
-  var k = n / d;
+  // Decides number of lobes
+  var k = a / b;
 
-  return Array.from({ length: l }).map(function (v, i) {
+  // For calculating how many iterations produce a closed curve, assuming k is rational
+  var c = 2 - ((b * a) % 2);
+
+  return Array.from({ length: 180 * c * b }).map(function (v, i) {
     var angle = rad(i);
     var reach = radius * Math.cos(k * angle);
 
@@ -90,17 +93,14 @@ Array.from({ length: 4 * 3 }).map(grid).forEach(function (v) {
   var y = (v.y * step.y) + cell.y;
 
   var n = 5 + (2 * (v.y - 2));
-  var g = v.x + 1;
+  var g = 1 + v.x;
   var d = g === n ? 5 : g;
-
-  var points = rose(size, n, d);
-  var border = points.length * (n % 2 === d % 2 ? 0.5 : 1);
 
   target.save();
   target.translate(x, y);
   target.beginPath();
 
-  points.slice(0, border).forEach(function (p) {
+  rose(size, n, d).forEach(function (p) {
     target.lineTo(p.x, p.y);
   });
 

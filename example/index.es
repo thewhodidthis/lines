@@ -17,17 +17,14 @@ Array.from({ length: 4 * 3 }).map(grid).forEach((v) => {
   const y = (v.y * step.y) + cell.y
 
   const n = 5 + (2 * (v.y - 2))
-  const g = v.x + 1
+  const g = 1 + v.x
   const d = g === n ? 5 : g
-
-  const points = lookup(size, n, d)
-  const border = points.length * (n % 2 === d % 2 ? 0.5 : 1)
 
   target.save()
   target.translate(x, y)
   target.beginPath()
 
-  points.slice(0, border).forEach((p) => {
+  lookup(size, n, d).forEach((p) => {
     target.lineTo(p.x, p.y)
   })
 
