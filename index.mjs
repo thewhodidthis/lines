@@ -1,36 +1,43 @@
 import { TAU, rad } from '@thewhodidthis/arithmetics'
-import pol2car from 'poltocar'
+import point from 'poltocar'
 
 // https://en.wikipedia.org/wiki/Regular_polygon
-export const poly = (radius = 0, n = 3) => {
-  const sector = TAU / n
+export const poly = (radius = 0, sides = 3) => {
+  // Theta increment, compute once
+  const d = TAU / sides
 
-  return Array.from({ length: n }).map((v, i) => pol2car(sector * i, radius))
+  return Array.from({ length: sides }).map((v, i) => point(d * i, radius))
 }
 
 // https://en.wikipedia.org/wiki/Archimedean_spiral
-export const coil = (radius = 0, n = 0, a = 0, b = 1, c = 1) => {
-  const l = Math.max(radius, 180) * n * 2
+export const coil = (radius = 0, turns = 1, phase = 1, c = 1) => {
+  // Decides type of spiral (eg. with Fermat's,  c = 2)
   const k = 1 / c
 
-  return Array.from({ length: l }).map((v, i) => {
-    const angle = rad(i)
-    const reach = a + (b * Math.pow(angle, k))
+  // Compute distance between turns
+  const d = radius / (TAU * turns)
 
-    return pol2car(angle, reach)
+  return Array.from({ length: 360 * turns }).map((v, i) => {
+    const angle = rad(i)
+    const reach = phase + (d * Math.pow(angle, k))
+
+    return point(angle, reach)
   })
 }
 
 // https://en.wikipedia.org/wiki/Rose_(mathematics)
-export const rose = (radius = 0, n = 2, d = 3, offset = 0) => {
-  const l = Math.max(radius, 180) * d * 2
-  const k = n / d
+export const rose = (radius = 0, a = 2, b = 3, offset = 0) => {
+  // Decides number of lobes
+  const k = a / b
 
-  return Array.from({ length: l }).map((v, i) => {
+  // For calculating how many iterations produce a closed curve, assuming k is rational
+  const c = 2 - ((b * a) % 2)
+
+  return Array.from({ length: 180 * c * b }).map((v, i) => {
     const angle = rad(i)
     const reach = radius * Math.cos(k * angle)
 
-    return pol2car(angle, reach + offset)
+    return point(angle, reach + offset)
   })
 }
 
@@ -66,6 +73,6 @@ export const foxy = (radius = 0, m1 = 0, n1, n2, n3, a = 1, b = a, m2 = m1) => {
     const t = score(angle)
     const reach = pow(t, 1 / n1)
 
-    return abs(reach) ? pol2car(angle, radius / reach) : { x: 0, y: 0 }
+    return abs(reach) ? point(angle, radius / reach) : { x: 0, y: 0 }
   })
 }

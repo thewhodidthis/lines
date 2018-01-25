@@ -3,52 +3,58 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var arithmetics = require('@thewhodidthis/arithmetics');
-var pol2car = require('poltocar');
+var point = require('poltocar');
 
 // https://en.wikipedia.org/wiki/Regular_polygon
-var poly = function (radius, n) {
+var poly = function (radius, sides) {
   if ( radius === void 0 ) radius = 0;
-  if ( n === void 0 ) n = 3;
+  if ( sides === void 0 ) sides = 3;
 
-  var sector = arithmetics.TAU / n;
+  // Theta increment, compute once
+  var d = arithmetics.TAU / sides;
 
-  return Array.from({ length: n }).map(function (v, i) { return pol2car(sector * i, radius); })
+  return Array.from({ length: sides }).map(function (v, i) { return point(d * i, radius); })
 };
 
 // https://en.wikipedia.org/wiki/Archimedean_spiral
-var coil = function (radius, n, a, b, c) {
+var coil = function (radius, turns, phase, c) {
   if ( radius === void 0 ) radius = 0;
-  if ( n === void 0 ) n = 0;
-  if ( a === void 0 ) a = 0;
-  if ( b === void 0 ) b = 1;
+  if ( turns === void 0 ) turns = 1;
+  if ( phase === void 0 ) phase = 1;
   if ( c === void 0 ) c = 1;
 
-  var l = Math.max(radius, 180) * n * 2;
+  // Decides type of spiral (eg. with Fermat's,  c = 2)
   var k = 1 / c;
 
-  return Array.from({ length: l }).map(function (v, i) {
-    var angle = arithmetics.rad(i);
-    var reach = a + (b * Math.pow(angle, k));
+  // Compute distance between turns
+  var d = radius / (arithmetics.TAU * turns);
 
-    return pol2car(angle, reach)
+  return Array.from({ length: 360 * turns }).map(function (v, i) {
+    var angle = arithmetics.rad(i);
+    var reach = phase + (d * Math.pow(angle, k));
+
+    return point(angle, reach)
   })
 };
 
 // https://en.wikipedia.org/wiki/Rose_(mathematics)
-var rose = function (radius, n, d, offset) {
+var rose = function (radius, a, b, offset) {
   if ( radius === void 0 ) radius = 0;
-  if ( n === void 0 ) n = 2;
-  if ( d === void 0 ) d = 3;
+  if ( a === void 0 ) a = 2;
+  if ( b === void 0 ) b = 3;
   if ( offset === void 0 ) offset = 0;
 
-  var l = Math.max(radius, 180) * d * 2;
-  var k = n / d;
+  // Decides number of lobes
+  var k = a / b;
 
-  return Array.from({ length: l }).map(function (v, i) {
+  // For calculating how many iterations produce a closed curve, assuming k is rational
+  var c = 2 - ((b * a) % 2);
+
+  return Array.from({ length: 180 * c * b }).map(function (v, i) {
     var angle = arithmetics.rad(i);
     var reach = radius * Math.cos(k * angle);
 
-    return pol2car(angle, reach + offset)
+    return point(angle, reach + offset)
   })
 };
 
@@ -98,7 +104,7 @@ var foxy = function (radius, m1, n1, n2, n3, a, b, m2) {
     var t = score(angle);
     var reach = pow(t, 1 / n1);
 
-    return abs(reach) ? pol2car(angle, radius / reach) : { x: 0, y: 0 }
+    return abs(reach) ? point(angle, radius / reach) : { x: 0, y: 0 }
   })
 };
 
