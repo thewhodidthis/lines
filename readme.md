@@ -1,4 +1,4 @@
-> Points for drawing common geometric forms, superformula included
+> Parametric solutions for common polar equations worth drawing with, superformula included
 
 ### Setup
 ```sh
