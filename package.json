@@ -1,7 +1,7 @@
 {
   "name": "multipolar",
   "version": "0.0.0",
-  "description": "Points for drawing common geometric forms",
+  "description": "Helps produce common geometric forms",
   "main": "index",
   "module": "index.mjs",
   "homepage": "https://github.com/thewhodidthis/multipolar#readme",
