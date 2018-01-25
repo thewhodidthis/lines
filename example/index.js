@@ -47,20 +47,47 @@ var poltocar = function (t, r) {
 });
 };
 
-// https://en.wikipedia.org/wiki/Regular_polygon
+/**
+ * Regular polygon
+ * @param {Number} - Radius
+ * @param {Number} - No. of sides
+ * @returns {Array} - Points
+ * @see {@link https://en.wikipedia.org/wiki/Regular_polygon}
+ * @example
+ * poly(100, 10);
+ */
 
 
-// https://en.wikipedia.org/wiki/Archimedean_spiral
+/**
+ * Archimedean spiral
+ * @param {Number} - Radius
+ * @param {Number} - No. of turns
+ * @param {Number} - Offset
+ * @param {Number} - Exponent
+ * @returns {Array} - Points
+ * @see {@link https://en.wikipedia.org/wiki/Archimedean_spiral}
+ * @example
+ * coil(100);
+ */
 
 
-// https://en.wikipedia.org/wiki/Rose_(mathematics)
+//
+
+/**
+ * Rose / Rhodonea curve
+ * @param {Number} - Radius
+ * @returns {Array} - Points
+ * @see {@link https://en.wikipedia.org/wiki/Rose_(mathematics)}
+ * @example
+ * rose(100);
+ */
 var rose = function (radius, a, b, offset) {
   if ( radius === void 0 ) radius = 0;
   if ( a === void 0 ) a = 2;
   if ( b === void 0 ) b = 3;
   if ( offset === void 0 ) offset = 0;
 
-  // Decides number of lobes
+  // Decides number of petals
   var k = a / b;
 
   // For calculating how many iterations produce a closed curve, assuming k is rational
@@ -74,7 +101,14 @@ var rose = function (radius, a, b, offset) {
   })
 };
 
-// https://en.wikipedia.org/wiki/Superformula
+/**
+ * Superformula
+ * @param {Number} - Radius
+ * @returns {Array} - Points
+ * @see {@link https://en.wikipedia.org/wiki/Superformula}
+ * @example
+ * foxy(100);
+ */
 
 var canvas = document.querySelector('canvas');
 var target = canvas.getContext('2d');
@@ -92,8 +126,8 @@ Array.from({ length: 4 * 3 }).map(grid).forEach(function (v) {
   var x = (v.x * step.x) + cell.x;
   var y = (v.y * step.y) + cell.y;
 
-  var n = 5 + (2 * (v.y - 2));
   var g = 1 + v.x;
+  var n = 5 + (2 * (v.y - 2));
   var d = g === n ? 5 : g;
 
   target.save();

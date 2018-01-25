@@ -16,8 +16,8 @@ Array.from({ length: 4 * 3 }).map(grid).forEach((v) => {
   const x = (v.x * step.x) + cell.x
   const y = (v.y * step.y) + cell.y
 
-  const n = 5 + (2 * (v.y - 2))
   const g = 1 + v.x
+  const n = 5 + (2 * (v.y - 2))
   const d = g === n ? 5 : g
 
   target.save()
