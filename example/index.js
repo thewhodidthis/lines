@@ -5,38 +5,8 @@ var TAU = 2 * Math.PI;
 
 var DEG = TAU / 360;
 
-// Convert radians to degrees
-
-
-// Convert degrees to radians
 var rad = function (x) { return x * DEG; };
 
-// Linear interpolator
-
-
-// Normalize values between 0 and 1
-
-
-// Translate values from one coordinate space to another
-
-
-// Constrain values within range
-
-
-// Get random integer in range, hi exclusive, lo inclusive
-
-
-// Calculate distance between two points
-
-/**
- * Helps covert from polar
- * @module poltocar
- * @param {Number} t - Angle (theta)
- * @param {Number} r - Radius
- * @returns {Object} - Vector like
- * @example
- * poltocar(Math.PI);
- */
 var poltocar = function (t, r) {
   if ( t === void 0 ) t = 0;
   if ( r === void 0 ) r = 1;
@@ -47,40 +17,6 @@ var poltocar = function (t, r) {
 });
 };
 
-/**
- * Regular polygon
- * @param {Number} - Radius
- * @param {Number} - No. of sides
- * @returns {Array} - Points
- * @see {@link https://en.wikipedia.org/wiki/Regular_polygon}
- * @example
- * poly(100, 10);
- */
-
-
-/**
- * Archimedean spiral
- * @param {Number} - Radius
- * @param {Number} - No. of turns
- * @param {Number} - Offset
- * @param {Number} - Exponent
- * @returns {Array} - Points
- * @see {@link https://en.wikipedia.org/wiki/Archimedean_spiral}
- * @example
- * coil(100);
- */
-
-
-//
-
-/**
- * Rose / Rhodonea curve
- * @param {Number} - Radius
- * @returns {Array} - Points
- * @see {@link https://en.wikipedia.org/wiki/Rose_(mathematics)}
- * @example
- * rose(100);
- */
 var rose = function (radius, a, b, offset) {
   if ( radius === void 0 ) radius = 0;
   if ( a === void 0 ) a = 2;
@@ -91,24 +27,15 @@ var rose = function (radius, a, b, offset) {
   var k = a / b;
 
   // For calculating how many iterations produce a closed curve, assuming k is rational
-  var c = 2 - ((b * a) % 2);
+  var r = 2 - ((b * a) % 2);
 
-  return Array.from({ length: 180 * c * b }).map(function (v, i) {
+  return Array.from({ length: 180 * r * b }).map(function (v, i) {
     var angle = rad(i);
     var reach = radius * Math.cos(k * angle);
 
     return poltocar(angle, reach + offset)
   })
 };
-
-/**
- * Superformula
- * @param {Number} - Radius
- * @returns {Array} - Points
- * @see {@link https://en.wikipedia.org/wiki/Superformula}
- * @example
- * foxy(100);
- */
 
 var canvas = document.querySelector('canvas');
 var target = canvas.getContext('2d');
