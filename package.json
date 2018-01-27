@@ -18,7 +18,7 @@
     "prestart": "eslint index.mjs",
     "start": "rollup -e @thewhodidthis/arithmetics,poltocar -f cjs --no-interop index.mjs | buble > index.js",
     "preexample": "eslint example/index.es",
-    "example": "cd example; rollup -c node:x -f iife index.es | buble > index.js"
+    "example": "cd example; rollup -c node:x -f iife index.es | buble | cpp -P | grep -v '^//' | uniq > index.js"
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
