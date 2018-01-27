@@ -5,52 +5,76 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var arithmetics = require('@thewhodidthis/arithmetics');
 var point = require('poltocar');
 
-// https://en.wikipedia.org/wiki/Regular_polygon
+/**
+ * Regular polygon
+ * @param {Number} [radius=0] - Half size of circumcircle
+ * @param {Number} [sides=3] - No. of sides
+ * @returns {Array.<Object>} - Points x, y
+ * @see {@link https://en.wikipedia.org/wiki/Regular_polygon}
+ * @example
+ * poly(50, 8); // Octagon with opposite facing vertices 100 units apart
+ */
 var poly = function (radius, sides) {
   if ( radius === void 0 ) radius = 0;
   if ( sides === void 0 ) sides = 3;
 
   // Theta increment, compute once
-  var d = arithmetics.TAU / sides;
+  var r = arithmetics.TAU / sides;
 
-  return Array.from({ length: sides }).map(function (v, i) { return point(d * i, radius); })
+  return Array.from({ length: sides }).map(function (v, i) { return point(r * i, radius); })
 };
 
-// https://en.wikipedia.org/wiki/Archimedean_spiral
-var coil = function (radius, turns, phase, c) {
+/**
+ * Archimedean spiral (general)
+ * @param {Number} [radius=0] - Half size of circumcircle
+ * @param {Number} [turns=1] - No. of turns
+ * @param {Number} [phase=1] - Offset
+ * @param {Number} [n=1] - Controls how tight the wrapping is
+ * @returns {Array.<Object>} - Points x, y
+ * @see {@link https://en.wikipedia.org/wiki/Archimedean_spiral}
+ */
+var coil = function (radius, turns, phase, n) {
   if ( radius === void 0 ) radius = 0;
   if ( turns === void 0 ) turns = 1;
   if ( phase === void 0 ) phase = 1;
-  if ( c === void 0 ) c = 1;
+  if ( n === void 0 ) n = 1;
 
-  // Decides type of spiral (eg. with Fermat's,  c = 2)
-  var k = 1 / c;
+  // Decides type of spiral (eg. with Fermat's, n = 2)
+  var k = 1 / n;
 
   // Compute distance between turns
-  var d = radius / (arithmetics.TAU * turns);
+  var r = radius / (arithmetics.TAU * turns);
 
   return Array.from({ length: 360 * turns }).map(function (v, i) {
     var angle = arithmetics.rad(i);
-    var reach = phase + (d * Math.pow(angle, k));
+    var reach = phase + (r * Math.pow(angle, k));
 
     return point(angle, reach)
   })
 };
 
-// https://en.wikipedia.org/wiki/Rose_(mathematics)
+/**
+ * Rose curve
+ * @param {Number} [radius=0] - Half size of circumcircle
+ * @param {Number} [a=2] - k ratio antecedent
+ * @param {Number} [b=3] - k ratio consequent
+ * @param {Number} [offset=0] - Radial offset
+ * @returns {Array.<Object>} - Points x, y
+ * @see {@link http://mathworld.wolfram.com/Rose.html}
+ */
 var rose = function (radius, a, b, offset) {
   if ( radius === void 0 ) radius = 0;
   if ( a === void 0 ) a = 2;
   if ( b === void 0 ) b = 3;
   if ( offset === void 0 ) offset = 0;
 
-  // Decides number of lobes
+  // Decides number of petals
   var k = a / b;
 
   // For calculating how many iterations produce a closed curve, assuming k is rational
-  var c = 2 - ((b * a) % 2);
+  var r = 2 - ((b * a) % 2);
 
-  return Array.from({ length: 180 * c * b }).map(function (v, i) {
+  return Array.from({ length: 180 * r * b }).map(function (v, i) {
     var angle = arithmetics.rad(i);
     var reach = radius * Math.cos(k * angle);
 
@@ -58,7 +82,19 @@ var rose = function (radius, a, b, offset) {
   })
 };
 
-// https://en.wikipedia.org/wiki/Superformula
+/**
+ * Superformula
+ * @param {Number} [radius=0] - Half size of circumcircle
+ * @param {Number} [m1=0] - Adds rotational symmetry
+ * @param {Number} n1 - Real, controls pinching
+ * @param {Number} n2 - Real, controls pinching
+ * @param {Number} n3 - Real, controls pinching
+ * @param {Number} [a=1] - Real excluding zero, controls sizing
+ * @param {Number} [b=a] - Real excluding zero, controls sizing
+ * @param {Number} [m2=m1] - Adds rotational symmetry
+ * @returns {Array.<Object>} - Points x, y
+ * @see {@link http://paulbourke.net/geometry/supershape}
+ */
 var foxy = function (radius, m1, n1, n2, n3, a, b, m2) {
   if ( radius === void 0 ) radius = 0;
   if ( m1 === void 0 ) m1 = 0;
