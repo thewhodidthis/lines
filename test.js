@@ -7,4 +7,4 @@ const count = 5
 const reach = 100
 const shape = poly(reach, count)
 
-equal(shape.length, count, 'will compute (poly)')
+equal(shape.length, count, 'will compute', 'poly')
