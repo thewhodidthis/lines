@@ -16,7 +16,7 @@
     "pretest": "eslint test.js",
     "test": "node test",
     "prestart": "eslint index.mjs",
-    "start": "rollup -e @thewhodidthis/arithmetics,poltocar -f cjs --no-interop index.mjs > index.js",
+    "start": "rollup -c node:x -e @thewhodidthis/arithmetics,poltocar -f cjs --no-interop --environment PREFER_CONST index.mjs > index.js",
     "preexample": "eslint example/index.js",
     "example": "cd example; rollup -c node:x -f iife index.js | cpp -P | grep -v '^//' | uniq > bundle.js"
   },

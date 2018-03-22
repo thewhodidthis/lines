@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var arithmetics = require('@thewhodidthis/arithmetics');
-var point = require('poltocar');
+const arithmetics = require('@thewhodidthis/arithmetics');
+const point = require('poltocar');
 
 /**
  * Regular polygon
