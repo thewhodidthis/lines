@@ -1,6 +1,6 @@
 {
   "name": "multipolar",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Helps produce common geometric forms",
   "main": "index",
   "module": "index.mjs",
