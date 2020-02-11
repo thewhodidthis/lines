@@ -117,7 +117,7 @@ const foxy = (radius = 0, m1 = 0, n1, n2, n3, a = 1, b = a, m2 = m1) => {
   })
 };
 
-exports.poly = poly;
 exports.coil = coil;
-exports.rose = rose;
 exports.foxy = foxy;
+exports.poly = poly;
+exports.rose = rose;
