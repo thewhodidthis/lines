@@ -16,9 +16,9 @@
     "pretest": "eslint test.js",
     "test": "node test",
     "prestart": "eslint index.mjs",
-    "start": "rollup -c node:x -e @thewhodidthis/arithmetics,poltocar -f cjs --no-interop --environment PREFER_CONST index.mjs > index.js",
+    "start": "rollup -c node:x -f cjs -e @thewhodidthis/arithmetics,poltocar index.mjs --no-interop --preferConst > index.js",
     "preexample": "eslint example/index.js",
-    "example": "cd example; rollup -c node:x -f iife index.js | cpp -P | grep -v '^//' | uniq > bundle.js"
+    "example": "cd example; rollup -c node:x -f iife index.js > bundle.js"
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
@@ -28,15 +28,15 @@
     "npm": ">=3.10.10"
   },
   "dependencies": {
-    "@thewhodidthis/arithmetics": "github:thewhodidthis/arithmetics",
-    "poltocar": "github:thewhodidthis/poltocar"
+    "@thewhodidthis/arithmetics": "^0.0.3",
+    "poltocar": "^2.0.5"
   },
   "devDependencies": {
-    "@thewhodidthis/eslint-config": "latest",
+    "@thewhodidthis/eslint-config": "^0.0.11",
     "eslint": "^6.8.0",
     "rollup": "^1.30.1",
-    "rollup-config-x": "latest",
-    "tapeless": "latest"
+    "rollup-config-x": "^1.0.2",
+    "tapeless": "^0.0.7"
   },
   "keywords": [
     "math",
