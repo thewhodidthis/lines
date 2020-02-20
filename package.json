@@ -28,15 +28,15 @@
     "npm": ">=3.10.10"
   },
   "dependencies": {
-    "@thewhodidthis/arithmetics": "^0.0.3",
+    "@thewhodidthis/arithmetics": "^0.0.5",
     "poltocar": "^2.0.5"
   },
   "devDependencies": {
-    "@thewhodidthis/eslint-config": "^0.0.11",
+    "@thewhodidthis/eslint-config": "^0.0.17",
     "eslint": "^6.8.0",
-    "rollup": "^1.30.1",
-    "rollup-config-x": "^1.0.2",
-    "tapeless": "^0.0.7"
+    "rollup": "^1.31.1",
+    "rollup-config-x": "^1.0.4",
+    "tapeless": "^0.0.9"
   },
   "keywords": [
     "math",
