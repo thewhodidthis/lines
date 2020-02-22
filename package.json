@@ -14,15 +14,18 @@
     "type": "git",
     "url": "git+https://github.com/thewhodidthis/multipolar.git"
   },
-  "license": "Unlicense",
-  "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
+  "license": "ISC",
+  "author": "Sotiri Bakagiannis <sotirios.bakagiannis@gmail.com> (http://thewhodidthis.com)",
   "main": "index",
   "module": "index.mjs",
+  "directories": {
+    "example": "example"
+  },
   "scripts": {
     "preexample": "eslint example/index.js",
-    "example": "cd example; rollup -c node:x -f iife index.js > bundle.js",
+    "example": "cd example; rollup -c node:x -f iife -o bundle.js index.js",
     "prestart": "eslint index.mjs",
-    "start": "rollup -c node:x -f cjs -e @thewhodidthis/arithmetics,poltocar index.mjs --no-interop --preferConst > index.js",
+    "start": "rollup -c node:x -f cjs -e @thewhodidthis/arithmetics,poltocar index.mjs -o index.js --no-interop --preferConst",
     "pretest": "eslint test.js",
     "test": "node test"
   },
