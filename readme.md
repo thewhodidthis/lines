@@ -1,12 +1,20 @@
-> Parametric solutions for common polar equations worth drawing with, superformula included
+## about
 
-### Setup
+Parametric solutions for common polar equations worth drawing with, [superformula](https://en.wikipedia.org/wiki/Superformula) included.
+
+## setup
+
+Fetch latest from GitHub directly,
+
 ```sh
-# Fetch latest from github
+# Includes ESM and CJS versions
 npm i thewhodidthis/multipolar
 ```
 
-### Usage
+## usage
+
+Expect pure functions as named exports returning arrays of points represented as plain `{ x, y }` style objects. For example,
+
 ```js
 import { poly } from 'multipolar'
 
@@ -33,3 +41,8 @@ target.stroke()
 
 document.body.appendChild(canvas)
 ```
+
+## see also
+
+- [@thewhodidthis/arithmetics](https://github.com/thewhodidthis/arithmetics)
+- [@thewhodidthis/poltocar](https://github.com/thewhodidthis/poltocar)
