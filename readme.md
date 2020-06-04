@@ -4,7 +4,7 @@ Parametric solutions for common polar equations worth drawing with, [superformul
 
 ## setup
 
-Fetch latest from GitHub directly,
+Fetch latest from GitHub directly:
 
 ```sh
 # Includes ESM and CJS versions
