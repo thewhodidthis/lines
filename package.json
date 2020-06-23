@@ -33,15 +33,15 @@
     "extends": "@thewhodidthis"
   },
   "dependencies": {
-    "@thewhodidthis/arithmetics": "^0.0.5",
-    "poltocar": "^2.0.5"
+    "@thewhodidthis/arithmetics": "^0.0.6",
+    "poltocar": "^2.0.7"
   },
   "devDependencies": {
-    "@thewhodidthis/eslint-config": "^0.0.17",
-    "eslint": "^6.8.0",
-    "rollup": "^1.31.1",
-    "rollup-config-x": "^1.0.4",
-    "tapeless": "^0.0.9"
+    "@thewhodidthis/eslint-config": "^0.1.6",
+    "eslint": "^7.3.1",
+    "rollup": "^2.18.0",
+    "rollup-config-x": "^2.0.3",
+    "tapeless": "^0.0.11"
   },
   "engines": {
     "node": ">=6.11.0",
