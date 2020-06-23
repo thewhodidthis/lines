@@ -4,16 +4,16 @@ Parametric solutions for common polar equations worth drawing with, [superformul
 
 ## setup
 
-Fetch latest from GitHub directly:
+Find the [latest version](https://npm.im/multipolar) on the _npm_ registry:
 
 ```sh
-# Includes ESM and CJS versions
-npm i thewhodidthis/multipolar
+# Includes ES and CJS modules
+npm install @thewhodidthis/multipolar
 ```
 
 ## usage
 
-Expect pure functions as named exports returning arrays of points represented as plain `{ x, y }` style objects. For example,
+Expect pure functions as named exports returning arrays of points represented as `{ x, y }` object literals. For example,
 
 ```js
 import { poly } from 'multipolar'
