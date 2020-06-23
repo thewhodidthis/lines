@@ -33,7 +33,7 @@
     "extends": "@thewhodidthis"
   },
   "dependencies": {
-    "@thewhodidthis/arithmetics": "^0.0.6",
+    "@thewhodidthis/arithmetics": "^0.0.7",
     "poltocar": "^2.0.7"
   },
   "devDependencies": {
