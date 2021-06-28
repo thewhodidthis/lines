@@ -4,11 +4,11 @@ Parametric solutions for common polar equations worth drawing with, [superformul
 
 ## setup
 
-Find the [latest version](https://npm.im/multipolar) on the _npm_ registry:
+Download from the _npm_ registry:
 
 ```sh
-# Includes ES and CJS modules
-npm install @thewhodidthis/multipolar
+# Add to package.json
+npm install multipolar
 ```
 
 ## usage
