@@ -14,7 +14,7 @@ export const poly = (radius = 0, sides = 3) => {
   // Theta increment, compute once
   const r = TAU / sides
 
-  return Array.from({ length: sides }).map((v, i) => point(r * i, radius))
+  return Array.from({ length: sides }).map((_, i) => point(r * i, radius))
 }
 
 /**
@@ -33,7 +33,7 @@ export const coil = (radius = 0, turns = 1, phase = 1, n = 1) => {
   // Compute distance between turns
   const r = radius / (TAU * turns)
 
-  return Array.from({ length: 360 * turns }).map((v, i) => {
+  return Array.from({ length: 360 * turns }).map((_, i) => {
     const angle = rad(i)
     const reach = phase + (r * Math.pow(angle, k))
 
@@ -57,7 +57,7 @@ export const rose = (radius = 0, a = 2, b = 3, offset = 0) => {
   // For calculating how many iterations produce a closed curve, assuming k is rational
   const r = 2 - ((b * a) % 2)
 
-  return Array.from({ length: 180 * r * b }).map((v, i) => {
+  return Array.from({ length: 180 * r * b }).map((_, i) => {
     const angle = rad(i)
     const reach = radius * Math.cos(k * angle)
 
@@ -104,7 +104,7 @@ export const foxy = (radius = 0, m1 = 0, n1, n2, n3, a = 1, b = a, m2 = m1) => {
     return score(phi, t2, id + 1)
   }
 
-  return Array.from({ length: 360 }).map((v, i) => {
+  return Array.from({ length: 360 }).map((_, i) => {
     const angle = rad(i)
     const t = score(angle)
     const reach = pow(t, 1 / n1)
