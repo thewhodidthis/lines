@@ -45,4 +45,4 @@ document.body.appendChild(canvas)
 ## see also
 
 - [@thewhodidthis/arithmetics](https://github.com/thewhodidthis/arithmetics)
-- [@thewhodidthis/poltocar](https://github.com/thewhodidthis/poltocar)
+- [poltocar](https://github.com/thewhodidthis/poltocar)
