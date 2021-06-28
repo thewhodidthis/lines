@@ -1,16 +1,16 @@
-import { rose as lookup } from '../index.mjs'
+import { rose as lookup } from "../main.js"
 
-const canvas = document.querySelector('canvas')
-const target = canvas.getContext('2d')
+const canvas = document.querySelector("canvas")
+const target = canvas.getContext("2d")
 
-target.strokeStyle = '#888'
+target.strokeStyle = "#888"
 target.lineWidth = 1.5
 
 const step = { x: canvas.width / 4, y: canvas.height / 3 }
 const cell = { x: step.x * 0.5, y: step.y * 0.5 }
 const size = cell.y * 0.75
 
-const grid = (v, i) => ({ x: i % 4, y: Math.floor(i / 4) })
+const grid = (_, i) => ({ x: i % 4, y: Math.floor(i / 4) })
 
 Array.from({ length: 4 * 3 }).map(grid).forEach((v) => {
   const x = (v.x * step.x) + cell.x
