@@ -1,5 +1,5 @@
-import { TAU, rad } from '@thewhodidthis/arithmetics'
-import point from 'poltocar'
+import { rad, TAU } from "@thewhodidthis/arithmetics"
+import point from "poltocar"
 
 /**
  * Regular polygon
