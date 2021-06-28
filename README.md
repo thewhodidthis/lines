@@ -16,10 +16,10 @@ npm install multipolar
 Expect pure functions as named exports returning arrays of points represented as `{ x, y }` object literals. For example,
 
 ```js
-import { poly } from 'multipolar'
+import { poly } from "multipolar"
 
-const canvas = document.createElement('canvas')
-const target = canvas.getContext('2d')
+const canvas = document.createElement("canvas")
+const target = canvas.getContext("2d")
 const center = { x: canvas.width * 0.5, y: canvas.height * 0.5 }
 
 // Draw an evil pentagram
